@@ -1,16 +1,20 @@
-# This is a sample Python script.
+# Zestaw B
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import openpyxl
+import xlrd
+import seaborn as sns
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+df = pd.read_csv('cars.csv', header=0, sep=';')
+print(df)
+print(df[df['Horsepower'] < 105])
+x = df.groupby(['Model year']).agg({'Model year':['count']})
+print(x)
+wykres = x.plot.pie(subplots=True, autopct='%.2f %%', fontsize=15, figsize=(8, 8), legend=False)
+plt.title('Roczniki aut')
+plt.savefig('roczniki_kolowy.png')
+plt.show()
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
